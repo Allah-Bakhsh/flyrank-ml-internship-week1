@@ -75,9 +75,10 @@ jobs:
               code = [c for c in nb.get("cells", []) if c.get("cell_type") == "code"]
               src = sum(len("".join(c.get("source", []))) for c in code)
               has_out = any(c.get("outputs") for c in code)
-              if code and src > 200 and not has_out:
+              has_exec = any(c.get("execution_count") is not None for c in code)
+              if code and src > 200 and not (has_out or has_exec):
                   kind = "error" if final else "warning"
-                  print(f"::{kind} file={p}::{p} has filled code cells but no outputs - "
+                  print(f"::{kind} file={p}::{p} has filled code cells but no outputs/execution counts - "
                         "did Colab save an unrun copy? Runtime -> Run all, then save again.")
                   if final:
                       bad.append(p)
