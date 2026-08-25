@@ -1,1 +1,1 @@
-PASTE-YOUR-DEPLOYED-PAPER-URL-HERE
+   https://allah-bakhsh.github.io/flyrank-ml-internship-week1/
